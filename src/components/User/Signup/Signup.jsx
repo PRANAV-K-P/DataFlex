@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../api/axiosInstance";
-import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 
 const Signup = () => {
   const [name, setName] = useState("");
