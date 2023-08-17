@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../../api/axiosInstance";
-import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { updateUserName } from "../../../redux/user";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
