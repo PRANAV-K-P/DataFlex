@@ -34,7 +34,11 @@ const AdminUsers = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [page, sortBy, filterBy]);
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
 
   return (
     <div className="px-2 lg:px-28 pt-24">
@@ -87,8 +91,8 @@ const AdminUsers = () => {
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
               >
-                <option>Name</option>
-                <option>Email</option>
+                <option value="name">Name</option>
+                <option value="email">Email</option>
               </select>
             </div>
           </div>
@@ -109,7 +113,7 @@ const AdminUsers = () => {
           {userData.map((Data, index) =>  <tr
             key={Data._id}
              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-center">
-            <td className="text-lg font-medium p-4">{index}</td>
+            <td className="text-lg font-medium p-4">{index + 1}</td>
             <td className="text-lg font-medium p-4">{Data.name}</td>
             <td className="text-lg font-medium p-4">{Data.email}</td>
             <td className="text-lg font-medium p-4">{Data.gender}</td>
@@ -125,10 +129,40 @@ const AdminUsers = () => {
           {/* ... */}
         </span>
         <ul className="inline-flex -space-x-px text-sm h-8">
-          <li>
-            {/* ... */}
-          </li>
-          {/* ... */}
+        {page > 1 && (
+              <li>
+                <button
+                  onClick={() => handlePageChange(page - 1)}
+                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                  Previous
+                </button>
+              </li>
+            )}
+          {Array.from({ length: totalPage }).map((_, i) => (
+              <li key={i}>
+                <button
+                  onClick={() => handlePageChange(i + 1)}
+                  className={`flex items-center justify-center px-3 h-8 leading-tight ${
+                    page === i + 1
+                      ? 'text-blue-700 bg-blue-50 hover:bg-blue-100'
+                      : 'dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+                  } `}
+                >
+                  {i + 1}
+                </button>
+              </li>
+            ))}
+            {page < totalPage && (
+              <li>
+                <button
+                  onClick={() => handlePageChange(page + 1)}
+                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                  Next
+                </button>
+              </li>
+            )}
         </ul>
       </nav>
     </div>
