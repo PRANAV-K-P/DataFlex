@@ -4,7 +4,7 @@ import AdminLogin from "../pages/Admin/AdminLogin";
 import AdminHome from "../pages/Admin/AdminHome";
 import AdminPrivateComponent from "../components/Authorization/AdminPrivateComponent";
 import AdminUsers from "../pages/Admin/AdminUsers";
-import AdminNavBar from "../components/Admin/AdminNavBar/AdminNavBar"
+import AdminNavBar from "../components/Admin/AdminNavBar/AdminNavBar";
 
 
 const AdminRoutes = () => {

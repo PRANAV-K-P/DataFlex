@@ -42,7 +42,7 @@ const AdminUsers = () => {
 
   return (
     <div className="px-2 lg:px-28 pt-24">
-      <div className="w-full h-[345px] ">
+      <div className="w-full h-[345px]">
         <div className="w-full flex flex-row mb-5 shadow-xl border border-gray-200 px-4">
           <div className="radio-div w-2/5">
             <h2 className="text-2xl font-medium">Filter by Gender</h2>
