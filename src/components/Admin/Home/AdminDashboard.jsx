@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { bearer } from "../../../utils/constants";
 import axiosInstance from "../../../api/axiosInstance";
 import { useDispatch } from "react-redux";
@@ -7,6 +7,7 @@ import PieChart from "./PieChart";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
   const getUserData = async () => {
     try {
@@ -20,8 +21,11 @@ const AdminDashboard = () => {
       if (response.data) {
         const res = response.data;
         dispatch(updateUserData(res));
+        setLoading(false);
       }
-    } catch (err) {}
+    } catch (err) {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -32,8 +36,8 @@ const AdminDashboard = () => {
       <div className="shadow-2xl flex justify-center">
         <div>
           <h2 className="text-2xl font-medium ml-32">User Gender Profile</h2>
-          <div className="w-[500px]">
-            <PieChart />
+          <div className="w-[500px] text-center">
+            {loading ? <h2 className="text-xl">Loading...</h2> : <PieChart /> }
           </div>
         </div>
       </div>

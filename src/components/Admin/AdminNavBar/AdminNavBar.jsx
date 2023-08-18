@@ -10,6 +10,7 @@ const AdminNavBar = () => {
   const logout = () => {
     localStorage.removeItem("admin");
     localStorage.removeItem("adminToken");
+    localStorage.removeItem("userData");
     navigate("/admin/login");
   };
 
